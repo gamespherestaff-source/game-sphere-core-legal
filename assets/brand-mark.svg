@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Game Sphere Core</title>
+  <desc id="desc">Simbolo geometrico a forma di sfera orbitale</desc>
+  <defs>
+    <linearGradient id="g" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7de9ff"/>
+      <stop offset="0.48" stop-color="#65a7ff"/>
+      <stop offset="1" stop-color="#9a7dff"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="25" fill="#11192b" stroke="url(#g)" stroke-width="2"/>
+  <path d="M19 23.5c4.2-7.1 14.9-9.4 22.1-4.4 2.2 1.5 3.8 3.5 4.9 5.7" fill="none" stroke="url(#g)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M45 40.5c-4.2 7.1-14.9 9.4-22.1 4.4-2.2-1.5-3.8-3.5-4.9-5.7" fill="none" stroke="url(#g)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M14 30c7.1 2.1 14.5 3.1 22 2.9 5-.1 9.7-.7 14-1.9" fill="none" stroke="#8aeaff" stroke-width="2" stroke-linecap="round" opacity=".88"/>
+  <circle cx="47.5" cy="26.5" r="3.5" fill="#d9f8ff"/>
+</svg>
+
