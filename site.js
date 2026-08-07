@@ -71,3 +71,87 @@ if (tocLinks.length && "IntersectionObserver" in window) {
   sections.forEach((section) => observer.observe(section));
   if (sections[0]) activate(sections[0].id);
 }
+
+/* FAQ accordion: native buttons keep the interaction keyboard-accessible. */
+const faqButtons = [...document.querySelectorAll(".faq-item button[aria-controls^='faq-answer-']")];
+
+const setFaqExpanded = (button, expanded) => {
+  const answer = document.getElementById(button.getAttribute("aria-controls"));
+  if (!answer) return;
+
+  button.setAttribute("aria-expanded", String(expanded));
+  answer.setAttribute("aria-hidden", String(!expanded));
+  answer.inert = !expanded;
+  button.closest(".faq-item")?.classList.toggle("is-open", expanded);
+};
+
+faqButtons.forEach((button) => {
+  setFaqExpanded(button, false);
+  button.addEventListener("click", () => {
+    const shouldExpand = button.getAttribute("aria-expanded") !== "true";
+    faqButtons.forEach((otherButton) => {
+      if (otherButton !== button) setFaqExpanded(otherButton, false);
+    });
+    setFaqExpanded(button, shouldExpand);
+  });
+});
+
+/* Informational staff dialog. Authentication is intentionally not simulated. */
+const accessDialog = document.getElementById("staff-access-dialog");
+const accessOpenButton = document.querySelector("[data-access-open]");
+const accessCloseButtons = accessDialog ? [...accessDialog.querySelectorAll("[data-access-close]")] : [];
+
+const closeAccessDialog = () => {
+  if (!accessDialog) return;
+  if (typeof accessDialog.close === "function") accessDialog.close();
+  else accessDialog.removeAttribute("open");
+};
+
+if (accessDialog && accessOpenButton) {
+  accessOpenButton.addEventListener("click", () => {
+    if (accessDialog.open) return;
+    if (typeof accessDialog.showModal === "function") accessDialog.showModal();
+    else accessDialog.setAttribute("open", "");
+  });
+
+  accessCloseButtons.forEach((button) => button.addEventListener("click", closeAccessDialog));
+  accessDialog.addEventListener("click", (event) => {
+    if (event.target === accessDialog) closeAccessDialog();
+  });
+}
+
+/* Progressive reveal for existing content, disabled when reduced motion is requested. */
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const revealTargets = [...document.querySelectorAll([
+  ".home-section > .section-heading",
+  ".legal-entry-card",
+  ".capability-card",
+  ".security-grid article",
+  ".faq-item",
+  ".staff-access-card",
+  ".contact-band",
+  ".legal-document section",
+].join(","))];
+
+if (!reducedMotion && revealTargets.length && "IntersectionObserver" in window) {
+  document.documentElement.classList.add("reveal-ready");
+
+  revealTargets.forEach((element) => {
+    element.classList.add("scroll-reveal");
+    if (element.matches(".section-heading, .contact-band")) element.classList.add("reveal-soft");
+
+    const peers = [...element.parentElement.children].filter((child) => revealTargets.includes(child));
+    const peerIndex = Math.max(0, peers.indexOf(element));
+    element.style.setProperty("--reveal-delay", `${Math.min(peerIndex, 3) * 65}ms`);
+  });
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      revealObserver.unobserve(entry.target);
+    });
+  }, { rootMargin: "0px 0px -9% 0px", threshold: 0.08 });
+
+  revealTargets.forEach((element) => revealObserver.observe(element));
+}
