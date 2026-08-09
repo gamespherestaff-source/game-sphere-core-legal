@@ -96,30 +96,6 @@ faqButtons.forEach((button) => {
   });
 });
 
-/* Informational staff dialog. Authentication is intentionally not simulated. */
-const accessDialog = document.getElementById("staff-access-dialog");
-const accessOpenButton = document.querySelector("[data-access-open]");
-const accessCloseButtons = accessDialog ? [...accessDialog.querySelectorAll("[data-access-close]")] : [];
-
-const closeAccessDialog = () => {
-  if (!accessDialog) return;
-  if (typeof accessDialog.close === "function") accessDialog.close();
-  else accessDialog.removeAttribute("open");
-};
-
-if (accessDialog && accessOpenButton) {
-  accessOpenButton.addEventListener("click", () => {
-    if (accessDialog.open) return;
-    if (typeof accessDialog.showModal === "function") accessDialog.showModal();
-    else accessDialog.setAttribute("open", "");
-  });
-
-  accessCloseButtons.forEach((button) => button.addEventListener("click", closeAccessDialog));
-  accessDialog.addEventListener("click", (event) => {
-    if (event.target === accessDialog) closeAccessDialog();
-  });
-}
-
 /* Progressive reveal for existing content, disabled when reduced motion is requested. */
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const revealTargets = [...document.querySelectorAll([
@@ -142,7 +118,7 @@ if (!reducedMotion && revealTargets.length && "IntersectionObserver" in window) 
 
     const peers = [...element.parentElement.children].filter((child) => revealTargets.includes(child));
     const peerIndex = Math.max(0, peers.indexOf(element));
-    element.style.setProperty("--reveal-delay", `${Math.min(peerIndex, 3) * 105}ms`);
+    element.style.setProperty("--reveal-delay", `${Math.min(peerIndex, 3) * 135}ms`);
   });
 
   const revealObserver = new IntersectionObserver((entries) => {

@@ -244,12 +244,12 @@
           <div class="staff-access-copy">
             <span class="restricted-label"><i aria-hidden="true"></i> Restricted Access</span>
             <h2 id="staff-access-title">Staff &amp; Developer Area</h2>
-            <p>Spazio predisposto per i futuri strumenti riservati allo Staff e agli sviluppatori. L’accesso reale richiederà Discord OAuth2 e la verifica server-side dei ruoli autorizzati.</p>
+            <p>Console operativa riservata allo Staff e agli sviluppatori autorizzati. L’accesso usa Discord OAuth2 con verifica server-side dell’account e del ruolo.</p>
           </div>
-          <div class="staff-access-meta" aria-label="Requisiti futuri">
-            <span>Discord OAuth2</span><span>Backend required</span>
+          <div class="staff-access-meta" aria-label="Requisiti di accesso">
+            <span>Discord OAuth2</span><span>Owner / Fondation</span>
           </div>
-          <button class="button button-secondary staff-access-button" type="button" data-access-open aria-haspopup="dialog" aria-controls="staff-access-dialog">Accedi<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+          <a class="button button-secondary staff-access-button" href="https://game-sphere-core-auth.gamesphere-staff.workers.dev/login">Accedi con Discord<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a>
         </div>
       </section>
 
@@ -298,21 +298,5 @@
     </div>
   </footer>
 
-  <dialog class="access-dialog" id="staff-access-dialog" aria-labelledby="access-dialog-title" aria-describedby="access-dialog-description">
-    <div class="access-dialog-card">
-      <button class="dialog-close" type="button" data-access-close aria-label="Chiudi finestra"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
-      <div class="dialog-lock" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 10V8a5 5 0 0 1 10 0v2M5 10h14v11H5zM12 14v3"/></svg></div>
-      <span class="restricted-label"><i aria-hidden="true"></i> Accesso non ancora attivo</span>
-      <h2 id="access-dialog-title">Accesso riservato allo Staff e agli sviluppatori</h2>
-      <p id="access-dialog-description">Questa versione prepara soltanto l’interfaccia. Non sono presenti form di login, password nel frontend o autenticazioni simulate.</p>
-      <div class="oauth-preview" aria-label="Flusso di autenticazione previsto">
-        <div><span>01</span><strong>Login with Discord</strong><small>Autenticazione OAuth2</small></div>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
-        <div><span>02</span><strong>Verifica server-side</strong><small>Account e ruolo autorizzato</small></div>
-      </div>
-      <div class="dialog-security-note"><strong>Perché serve un backend?</strong><p>GitHub Pages ospita solo file statici. Lo scambio OAuth2, i segreti dell’applicazione e la verifica dei ruoli devono avvenire su un servizio backend protetto.</p></div>
-      <button class="button button-primary dialog-confirm" type="button" data-access-close>Ho capito</button>
-    </div>
-  </dialog>
 </body>
 </html>

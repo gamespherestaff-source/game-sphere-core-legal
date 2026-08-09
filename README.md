@@ -32,13 +32,15 @@ La data visualizzata è centralizzata nella costante `LEGAL_LAST_UPDATED` in `si
 - indice laterale attivo, barra di lettura e indice comprimibile sui dispositivi mobili;
 - sistema grafico dark premium con asset locali e nessuna dipendenza esterna.
 
-## Funzionalità versione 1.1
+## Funzionalità versione 1.2
 
 - animazioni di comparsa progressive e discrete durante lo scroll, con piccoli ritardi tra elementi vicini e disattivazione automatica tramite `prefers-reduced-motion`;
 - sezione “Domande frequenti” nella homepage con accordion accessibile, pulsanti nativi e stato `aria-expanded`;
 - sezione compatta “Staff & Developer Area” con una finestra informativa dedicata al futuro accesso tramite Discord OAuth2;
 - micro-interazioni e profondità delle card leggermente migliorate, senza sostituire il design esistente.
 
-La Staff & Developer Area è esclusivamente un'interfaccia informativa: non contiene password, token, segreti o una simulazione di autenticazione. Il collegamento futuro a Discord OAuth2 dovrà essere realizzato tramite un backend esterno che verifichi l'account e i ruoli autorizzati lato server, poiché GitHub Pages ospita soltanto contenuti statici.
+La Staff & Developer Area apre il backend reale `https://game-sphere-core-auth.gamesphere-staff.workers.dev/login`. Il frontend non contiene password, token, segreti o controlli di autorizzazione: autenticazione, sessione e verifica Server Owner/Fondation restano interamente lato Cloudflare Worker.
+
+Nella versione 1.2 le animazioni on-scroll sono state rallentate a 920 ms, con dissolvenza del blur a 840 ms e stagger di 135 ms fra elementi vicini. Il supporto a `prefers-reduced-motion` rimane attivo. Tutti i collegamenti Contatto utilizzano `mailto:gamesphere.staff@gmail.com`.
 
 Il contenuto è stato redatto in base al comportamento osservabile nel codice sorgente analizzato il 7 agosto 2026. Prima dell'uso ufficiale è opportuna una revisione legale professionale e una verifica periodica dopo ogni modifica del bot.
