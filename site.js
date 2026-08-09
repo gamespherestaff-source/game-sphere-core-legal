@@ -142,7 +142,7 @@ if (!reducedMotion && revealTargets.length && "IntersectionObserver" in window) 
 
     const peers = [...element.parentElement.children].filter((child) => revealTargets.includes(child));
     const peerIndex = Math.max(0, peers.indexOf(element));
-    element.style.setProperty("--reveal-delay", `${Math.min(peerIndex, 3) * 65}ms`);
+    element.style.setProperty("--reveal-delay", `${Math.min(peerIndex, 3) * 105}ms`);
   });
 
   const revealObserver = new IntersectionObserver((entries) => {
