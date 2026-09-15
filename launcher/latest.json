@@ -3,18 +3,18 @@
   "channel": "stable",
   "mandatory": true,
   "launcher": {
-    "version": "1.4.1",
+    "version": "1.4.2",
     "artifact": "onefile-exe",
-    "url": "https://github.com/gamespherestaff-source/game-sphere-launcher-updates/releases/download/v1.4.1/Game-Sphere-Launcher.exe",
-    "sha256": "958d93b498c1fe66dc1f21ebe2cb7498339e711230d3cbf8def42cc162491038",
-    "size": 23016348
+    "url": "https://github.com/gamespherestaff-source/game-sphere-launcher-updates/releases/download/v1.4.2/Game-Sphere-Launcher.exe",
+    "sha256": "da45fd51404d1b756903494023cd88e0928c4ade2113d4950b415641d1cb1c45",
+    "size": 30014455
   },
   "pack": {
     "version": "1.5-gs.3",
-    "url": "https://github.com/gamespherestaff-source/game-sphere-launcher-updates/releases/download/v1.4.1/Game-Sphere-Pack-1.5-gs.3.zip",
+    "url": "https://github.com/gamespherestaff-source/game-sphere-launcher-updates/releases/download/v1.4.2/Game-Sphere-Pack-1.5-gs.3.zip",
     "sha256": "2c878cc23764288db041968271f4b5e1ea8a4bca405e8532348701165abe2747",
     "size": 388574030,
-    "manifest_url": "https://github.com/gamespherestaff-source/game-sphere-launcher-updates/releases/download/v1.4.1/pack-manifest-1.5-gs.3.json",
+    "manifest_url": "https://github.com/gamespherestaff-source/game-sphere-launcher-updates/releases/download/v1.4.2/pack-manifest-1.5-gs.3.json",
     "manifest_sha256": "1026ae781a0b2215b9d4e2d1fbb18e3e89dbecd5d830a9015de77ad50f3ecd61"
   }
 }
