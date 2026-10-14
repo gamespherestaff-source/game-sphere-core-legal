@@ -139,7 +139,7 @@ if (tocLinks.length && "IntersectionObserver" in window) {
   if (sections[0]) {
     activate(sections[0].id);
   }
-});
+}
 
 /* FAQ accordion:
    i pulsanti nativi mantengono l'interazione
