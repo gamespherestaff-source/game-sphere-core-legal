@@ -2850,3 +2850,60 @@ h3 {
     color: #111;
   }
 }
+
+/* Game Sphere motion trial: decorative Core only; text reveals unchanged. */
+@media (prefers-reduced-motion: no-preference) {
+  .core-visual .visual-orbit { pointer-events: none; }
+  .core-visual .visual-orbit::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border: 1px solid rgba(var(--cyan-rgb), 0.65);
+    border-radius: 2px;
+    background: rgba(var(--cyan-rgb), 0.4);
+    box-shadow: 0 0 12px rgba(var(--cyan-rgb), 0.3);
+    transform: translate(-50%, -50%);
+  }
+  .core-visual .visual-orbit-a {
+    animation: gs-orbit-turn 36s linear infinite;
+  }
+  .core-visual .visual-orbit-b {
+    animation: gs-orbit-turn 48s linear infinite reverse;
+  }
+  .core-visual .visual-orbit-b::after {
+    border-color: rgba(var(--violet-rgb), 0.7);
+    background: rgba(var(--violet-rgb), 0.42);
+  }
+  .core-visual .core-center::before {
+    animation: gs-orbit-turn 55s linear infinite;
+  }
+  .core-visual .core-node-one {
+    animation: gs-node-drift 8s ease-in-out -1.2s infinite;
+  }
+  .core-visual .core-node-two {
+    animation: gs-node-drift 10s ease-in-out -3.6s infinite reverse;
+  }
+  .core-visual .core-node-three {
+    animation: gs-node-drift 9s ease-in-out -5s infinite;
+  }
+  .core-visual .core-node i {
+    animation: gs-signal-breathe 6s ease-in-out infinite;
+  }
+  .core-visual .core-node-two i { animation-delay: -2s; }
+  .core-visual .core-node-three i { animation-delay: -4s; }
+  @keyframes gs-orbit-turn {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes gs-node-drift {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(3px, -7px, 0); }
+  }
+  @keyframes gs-signal-breathe {
+    0%, 100% { opacity: 0.65; }
+    50% { opacity: 1; }
+  }
+}
