@@ -2907,3 +2907,31 @@ h3 {
     50% { opacity: 1; }
   }
 }
+
+/* Reversible document utilities, October 2026. */
+.document-tools { display:flex; flex-wrap:wrap; gap:12px; align-items:center; padding:20px; margin-bottom:28px; border:1px solid #334264; border-radius:16px; background:#0e192a; }
+.document-tools[hidden], .legal-document section[hidden] { display:none !important; }
+.document-tools label { width:100%; font-weight:600; }
+.document-tools input, .copy-fallback { box-sizing:border-box; min-width:0; max-width:100%; padding:12px; background:#08111f; border:1px solid #627797; border-radius:8px; color:#f4f7ff; font:inherit; }
+.document-tools input { flex:1 1 220px; }
+.search-status { width:100%; margin:0; font-size:.9rem; }
+.search-status:empty { display:none; }
+.utility-button { min-height:44px; padding:8px 14px; color:#c3d7ff; background:#132239; border:1px solid #4b6182; border-radius:8px; font:inherit; cursor:pointer; }
+.utility-button:hover { background:#20334e; }
+.utility-button:focus-visible, .document-tools input:focus-visible, .back-top:focus-visible { outline:3px solid #9eacff; outline-offset:3px; }
+.section-copy { margin:0 0 18px; font-size:.8rem; }
+.copy-fallback { display:block; width:100%; margin-bottom:12px; }
+.back-top { display:block; width:fit-content; margin:24px auto; padding:12px 20px; border:1px solid #4b6182; border-radius:24px; color:#dce6ff; }
+.not-found { max-width:720px; margin:12vh auto; padding:24px; }
+@media print {
+  :root { color-scheme:light; }
+  html, body { background:white !important; color:black !important; }
+  body * { color:black !important; text-shadow:none !important; box-shadow:none !important; animation:none !important; transition:none !important; }
+  body::before, body::after, .site-header, .site-footer, .toc, .reading-progress, .document-tools, .section-copy, .copy-fallback, .back-top, .skip-link { display:none !important; }
+  .page-shell, .document-shell, .legal-document { display:block !important; width:100% !important; max-width:none !important; margin:0 !important; padding:0 !important; }
+  .legal-document section, .legal-document section[hidden], .scroll-reveal { display:block !important; opacity:1 !important; transform:none !important; visibility:visible !important; }
+  .legal-document section { background:white !important; border-color:#ccc !important; break-inside:auto; }
+  h2, h3 { break-after:avoid; }
+  p, li { orphans:3; widows:3; }
+  a { text-decoration:underline !important; }
+}

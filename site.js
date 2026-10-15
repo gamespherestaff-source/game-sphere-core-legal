@@ -275,3 +275,56 @@ if (
     revealObserver.observe(element);
   });
 }
+
+/* Document utilities: local-only search, section links and printing. */
+(() => {
+  const article = document.querySelector('.legal-document');
+  if (!article) return;
+  const tools = article.querySelector('[data-document-tools]');
+  const input = article.querySelector('#document-search');
+  const status = article.querySelector('[data-search-status]');
+  const sections = Array.from(article.querySelectorAll('section[id]'));
+  const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('it');
+  const searchable = sections.map(section => normalize(section.textContent));
+  tools.hidden = false;
+  input.addEventListener('input', () => {
+    const query = normalize(input.value.trim());
+    let matches = 0;
+    sections.forEach((section, index) => {
+      const found = !query || searchable[index].includes(query);
+      section.hidden = !found;
+      if (found) matches++;
+    });
+    status.textContent = query ? `${matches} sezioni trovate. Cancella la ricerca per vedere tutto.` : '';
+  });
+  window.addEventListener('hashchange', () => {
+    if (input.value) { input.value = ''; input.dispatchEvent(new Event('input')); }
+  });
+  article.querySelector('[data-print]').addEventListener('click', () => window.print());
+  sections.forEach(section => {
+    const heading = section.querySelector('h2');
+    if (!heading) return;
+    const button = document.createElement('button');
+    button.type = 'button'; button.className = 'section-copy utility-button';
+    button.textContent = 'Copia link';
+    button.setAttribute('aria-label', `Copia link: ${heading.textContent.trim()}`);
+    button.addEventListener('click', async () => {
+      const url = new URL(location.href); url.hash = section.id;
+      try {
+        if (!navigator.clipboard || !window.isSecureContext) throw new Error('clipboard unavailable');
+        await navigator.clipboard.writeText(url.href);
+        status.textContent = 'Link alla sezione copiato.';
+      } catch (_) {
+        let fallback = section.querySelector('.copy-fallback');
+        if (!fallback) {
+          fallback = document.createElement('input'); fallback.className = 'copy-fallback';
+          fallback.readOnly = true; fallback.setAttribute('aria-label', 'Link da copiare manualmente');
+          heading.after(fallback);
+        }
+        fallback.value = url.href; fallback.focus(); fallback.select();
+        status.textContent = 'Copia automatica non disponibile: seleziona e copia il link mostrato.';
+      }
+    });
+    heading.after(button);
+  });
+})();
